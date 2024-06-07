@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:todo/pages/onboarding/onboarding_one_screen.dart';
+import 'package:todo/pages/home/home_view.dart';
+import 'package:todo/pages/onboarding/onboarding_view.dart';
 import 'package:todo/pages/splash_Screen/splash_screen.dart';
+
+import 'core/theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,10 +18,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'TO DO',
       debugShowCheckedModeBanner: false,
+      theme: ThemeApplications.themeLight,
       initialRoute: SplashScreen.routeName,
       routes: {
-        SplashScreen.routeName: (context) => SplashScreen(),
-        OnboardingOneScreen.routeName: (context) => OnboardingOneScreen(),
+        SplashScreen.routeName: (context) => const SplashScreen(),
+        OnboardingView.routeName: (context) => OnboardingView(),
+        HomeView.routeName: (context) => HomeView(),
       },
     );
   }
