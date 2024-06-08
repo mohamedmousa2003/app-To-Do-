@@ -5,6 +5,9 @@ class ThemeApplications {
   static bool isDark = true;
   static ThemeData themeLight = ThemeData(
     scaffoldBackgroundColor: blackColor,
+    appBarTheme: const AppBarTheme(
+        backgroundColor: blackColor,
+        iconTheme: IconThemeData(color: whiteColor, size: 30)),
     textTheme: const TextTheme(
       titleLarge: TextStyle(
         fontSize: 32,
@@ -22,6 +25,10 @@ class ThemeApplications {
       bodyLarge: TextStyle(
         fontSize: 27,
         fontWeight: FontWeight.bold,
+      ),
+      bodySmall: TextStyle(
+        fontSize: 12,
+        color: whiteColor,
       ),
     ),
   );

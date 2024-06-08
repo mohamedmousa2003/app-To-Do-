@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo/pages/home/home_view.dart';
 import 'package:todo/pages/onboarding/onboarding_view.dart';
+import 'package:todo/pages/register/register_view.dart';
 import 'package:todo/pages/splash_Screen/splash_screen.dart';
 
 import 'core/theme.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         SplashScreen.routeName: (context) => const SplashScreen(),
         OnboardingView.routeName: (context) => OnboardingView(),
         HomeView.routeName: (context) => HomeView(),
+        RegisterView.routeName: (context) => RegisterView(),
       },
     );
   }

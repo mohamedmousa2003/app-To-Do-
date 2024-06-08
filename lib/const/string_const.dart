@@ -1,0 +1,9 @@
+const String login = "Login";
+const String register = " Register";
+const String noAccount = "Don’t have an account?";
+const String or = "or";
+const String password = "Password";
+const String userName = "User Name";
+const String enterUserName = "Enter your Username";
+const String loginWithGoogle = "Login with Google";
+const String loginWithApple = "Login with Apple";
