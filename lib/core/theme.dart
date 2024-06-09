@@ -23,8 +23,13 @@ class ThemeApplications {
         color: whiteColor,
       ),
       bodyLarge: TextStyle(
-        fontSize: 27,
+        fontSize: 24,
+        color: whiteColor,
         fontWeight: FontWeight.bold,
+      ),
+      bodyMedium: TextStyle(
+        fontSize: 20,
+        color: whiteColor,
       ),
       bodySmall: TextStyle(
         fontSize: 12,

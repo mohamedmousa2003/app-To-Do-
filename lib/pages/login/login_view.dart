@@ -4,6 +4,8 @@ import 'package:todo/core/app_colors.dart';
 import 'package:todo/pages/register/register_view.dart';
 import 'package:todo/pages/widget/custom_text_field.dart';
 
+import '../widget/build_tap_container.dart';
+
 class LoginView extends StatefulWidget {
   LoginView({super.key});
 
@@ -122,9 +124,16 @@ class _LoginViewState extends State<LoginView> {
                 ],
               ),
               const SizedBox(height: 40),
-              _buildContainer(loginWithGoogle, Icons.add),
+              BuildTapContainer(
+                onTap: () {},
+                title: loginWithGoogle,
+                image: "assets/images/icon_google.png",
+              ),
               const SizedBox(height: 20),
-              _buildContainer(loginWithApple, Icons.apple),
+              BuildTapContainer(
+                  onTap: () {},
+                  title: loginWithApple,
+                  image: "assets/images/icon_apple.png"),
               const SizedBox(height: 40),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -148,37 +157,6 @@ class _LoginViewState extends State<LoginView> {
               )
             ],
           ),
-        ),
-      ),
-    );
-  }
-
-  _buildContainer(String title, IconData icon) {
-    var theme = Theme.of(context);
-    return InkWell(
-      onTap: () {},
-      child: Container(
-        width: double.infinity,
-        height: 50,
-        decoration: BoxDecoration(
-          color: blackColor,
-          border: Border.all(color: iconColorBlue, width: 2),
-          borderRadius: BorderRadius.circular(4),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              icon,
-              color: whiteColor,
-            ),
-            Text(
-              " $title",
-              style: theme.textTheme.titleSmall?.copyWith(
-                color: whiteColor.withOpacity(0.87),
-              ),
-            ),
-          ],
         ),
       ),
     );
