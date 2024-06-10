@@ -44,17 +44,16 @@ class CustomTextField extends StatefulWidget {
     this.action,
     this.focusNode,
   });
-
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
 }
 
 class _CustomTextFieldState extends State<CustomTextField> {
   bool obscureText = true;
-
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
+
     return TextFormField(
       controller: widget.controller,
       initialValue: widget.value,
