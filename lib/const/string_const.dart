@@ -13,3 +13,14 @@ const String haveAccount = "Already have an account? ";
 const String confirmPassword = "Confirm Password";
 const String whatDoYouWant = "What do you want to do today?";
 const String tapAppTask = "Tap + to add your tasks";
+
+/// add task
+const String addTask = "Add Task";
+const String title = "Title";
+const String note = "Note";
+const String date = "Date";
+const String enterTitleHere = "Enter title here";
+const String enterNoteHere = "Enter note here";
+const String startTime = "Start Time";
+const String endTime = "End Time";
+const String createTask = "create task";

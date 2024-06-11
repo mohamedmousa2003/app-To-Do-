@@ -2,6 +2,7 @@ import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:todo/core/app_colors.dart';
+import 'package:todo/pages/home/add_task.dart';
 
 import '../../const/string_const.dart';
 
@@ -16,7 +17,6 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   DateTime dataTime = DateTime.now();
-
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
@@ -62,7 +62,9 @@ class _HomeViewState extends State<HomeView> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, AddTask.routeName);
+        },
         child: Icon(
           Icons.add,
           color: whiteColor,
