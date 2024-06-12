@@ -8,4 +8,5 @@ const iconColorBlue = Color(0xff8875FF);
 const calenderColor = Color(0xff242969);
 const redColor = Color(0xffFF4666);
 const orColor = Color(0xff979797);
+const greenColor = Color(0xff66CC41);
 const yellowColor = Color(0xffCC8441);
