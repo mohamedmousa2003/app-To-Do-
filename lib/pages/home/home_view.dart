@@ -2,6 +2,7 @@ import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:todo/core/app_colors.dart';
+import 'package:todo/core/custom_extension.dart';
 import 'package:todo/pages/home/add_task.dart';
 
 import '../../const/string_const.dart';
@@ -74,6 +75,42 @@ class _HomeViewState extends State<HomeView> {
           borderRadius: BorderRadius.circular(50),
         ),
         backgroundColor: iconColorBlue,
+      ),
+    );
+  }
+
+  buildContainer() {
+    var theme = Theme.of(context);
+    return Container(
+      height: 128,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Column(
+        children: [
+          Text(
+            "Task 1",
+            style: theme.textTheme.titleMedium?.copyWith(fontSize: 24),
+          ),
+          Row(
+            children: [
+              Icon(
+                Icons.timer,
+                color: whiteColor,
+              ),
+              8.width,
+              Text(
+                "09:33 PM - 09:48 PM",
+                style: theme.textTheme.titleSmall,
+              ),
+            ],
+          ),
+          Text(
+            "Learn SQLITE ",
+            style: theme.textTheme.titleMedium?.copyWith(fontSize: 24),
+          ),
+        ],
       ),
     );
   }

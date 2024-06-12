@@ -24,3 +24,4 @@ const String enterNoteHere = "Enter note here";
 const String startTime = "Start Time";
 const String endTime = "End Time";
 const String createTask = "create task";
+const String color = "Color";
