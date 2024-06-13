@@ -10,7 +10,7 @@ import '../../const/string_const.dart';
 class HomeView extends StatefulWidget {
   static String routeName = 'home';
 
-  const HomeView({super.key});
+   HomeView({super.key});
 
   @override
   State<HomeView> createState() => _HomeViewState();
@@ -31,7 +31,7 @@ class _HomeViewState extends State<HomeView> {
       ),
       body: Column(
         children: [
-          const SizedBox(height: 20),
+          20.height,
           DatePicker(
               height: 130,
               width: 80,
@@ -46,20 +46,11 @@ class _HomeViewState extends State<HomeView> {
             dataTime = date;
             setState(() {});
           }),
-          const SizedBox(height: 20),
-          Image.asset("assets/images/home_vector.png",
-              fit: BoxFit.cover, width: 300),
-          const SizedBox(height: 30),
-          Text(
-            whatDoYouWant,
-            style: theme.textTheme.bodyMedium,
-          ),
-          const SizedBox(height: 10),
-          Text(
-            tapAppTask,
-            style: theme.textTheme.titleSmall
-                ?.copyWith(color: whiteColor.withOpacity(0.70)),
-          ),
+          20.height,
+          // no task
+          //noTaskWidget(theme),
+          buildContainer(),
+          buildContainer(),
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -79,39 +70,89 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  buildContainer() {
+  Column noTaskWidget(ThemeData theme) {
+    return Column(
+      children: [
+        Image.asset("assets/images/home_vector.png",
+            fit: BoxFit.cover, width: 300),
+        30.height,
+        Text(
+          whatDoYouWant,
+          style: theme.textTheme.bodyMedium,
+        ),
+        10.height,
+        Text(
+          tapAppTask,
+          style: theme.textTheme.titleSmall
+              ?.copyWith(color: whiteColor.withOpacity(0.70)),
+        ),
+      ],
+    );
+  }
+
+  buildContainer(/*Color colorTask*/) {
     var theme = Theme.of(context);
     return Container(
+      padding: const EdgeInsets.all(10),
+      margin: const EdgeInsets.all(8),
       height: 128,
       width: double.infinity,
       decoration: BoxDecoration(
+        color: redColor,
         borderRadius: BorderRadius.circular(16),
       ),
-      child: Column(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            "Task 1",
-            style: theme.textTheme.titleMedium?.copyWith(fontSize: 24),
-          ),
-          Row(
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(
-                Icons.timer,
-                color: whiteColor,
-              ),
-              8.width,
               Text(
-                "09:33 PM - 09:48 PM",
-                style: theme.textTheme.titleSmall,
+                "Task 1",
+                style: theme.textTheme.titleMedium
+                    ?.copyWith(fontSize: 24, color: whiteColor),
+              ),
+              Row(
+                children: [
+                  const Icon(
+                    Icons.timer,
+                    color: whiteColor,
+                  ),
+                  8.width,
+                  Text(
+                    "09:33 PM - 09:48 PM",
+                    style: theme.textTheme.titleSmall,
+                  ),
+                ],
+              ),
+              Text(
+                "Learn SQLITE ",
+                style: theme.textTheme.titleMedium
+                    ?.copyWith(color: whiteColor, fontSize: 24),
               ),
             ],
           ),
-          Text(
-            "Learn SQLITE ",
-            style: theme.textTheme.titleMedium?.copyWith(fontSize: 24),
-          ),
+          Row(
+            children: [
+              const VerticalDivider(
+                width: 2,
+                color: whiteColor,
+                indent: 10,
+                endIndent: 10,
+              ),
+              9.width,
+              const RotatedBox(
+                quarterTurns: 3,
+                child: Text(" TO DO"),
+              ),
+            ],
+          )
         ],
       ),
     );
   }
 }
+/*
+
+ */
