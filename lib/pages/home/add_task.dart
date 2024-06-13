@@ -3,6 +3,7 @@ import 'package:todo/const/string_const.dart';
 import 'package:todo/core/custom_extension.dart';
 
 import '../../core/app_colors.dart';
+import '../widget/custom_button.dart';
 import '../widget/custom_text_field.dart';
 
 class AddTask extends StatefulWidget {
@@ -211,22 +212,9 @@ class _AddTaskState extends State<AddTask> {
               ],
             ),
             92.height,
-            InkWell(
+            CustomButton(
+              title: createTask.toUpperCase(),
               onTap: () {},
-              child: Container(
-                width: double.infinity,
-                height: 50,
-                decoration: BoxDecoration(
-                  color: iconColorBlue,
-                  borderRadius: BorderRadius.circular(4),
-                ),
-                child: Center(
-                  child: Text(
-                    createTask.toUpperCase(),
-                    style: theme.textTheme.titleSmall,
-                  ),
-                ),
-              ),
             ),
             55.width,
           ],

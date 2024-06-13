@@ -3,6 +3,9 @@ import 'package:todo/core/app_colors.dart';
 import 'package:todo/pages/login/login_view.dart';
 import 'package:todo/pages/register/register_view.dart';
 
+import '../../const/string_const.dart';
+import '../widget/custom_button.dart';
+
 class StartScreenView extends StatelessWidget {
   const StartScreenView({super.key});
 
@@ -33,6 +36,18 @@ class StartScreenView extends StatelessWidget {
             ),
             Column(
               children: [
+                CustomButton(
+                  title: login.toUpperCase(),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => LoginView(),
+                      ),
+                    );
+                  },
+                ),
+                /*
                 InkWell(
                   onTap: () {
                     Navigator.push(
@@ -58,9 +73,22 @@ class StartScreenView extends StatelessWidget {
                     ),
                   ),
                 ),
+                */
                 SizedBox(
                   height: 28,
                 ),
+                CustomButton(
+                  title: createAccount.toUpperCase(),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => RegisterView(),
+                      ),
+                    );
+                  },
+                ),
+                /*
                 InkWell(
                   onTap: () {
                     Navigator.push(
@@ -90,6 +118,7 @@ class StartScreenView extends StatelessWidget {
                     ),
                   ),
                 ),
+                */
               ],
             ),
           ],

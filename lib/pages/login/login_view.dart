@@ -6,17 +6,18 @@ import 'package:todo/pages/register/register_view.dart';
 import 'package:todo/pages/widget/custom_text_field.dart';
 
 import '../widget/build_tap_container.dart';
+import '../widget/custom_button.dart';
 
 class LoginView extends StatefulWidget {
   LoginView({super.key});
 
   @override
   State<LoginView> createState() => _LoginViewState();
+  static String routeName = "login";
 }
 
 class _LoginViewState extends State<LoginView> {
   var passwordController = TextEditingController();
-
   var userNameController = TextEditingController();
   var formKey = GlobalKey<FormState>();
 
@@ -79,6 +80,11 @@ class _LoginViewState extends State<LoginView> {
                   keyboardType: TextInputType.text,
                 ),
                 30.height,
+                CustomButton(
+                  title: login,
+                  onTap: () {},
+                ),
+                /*
                 InkWell(
                   onTap: () {},
                   child: Container(
@@ -96,6 +102,7 @@ class _LoginViewState extends State<LoginView> {
                     ),
                   ),
                 ),
+                 */
                 30.height,
                 Row(
                   children: [
