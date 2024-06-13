@@ -1,4 +1,5 @@
 const String login = "Login";
+const String createAccount = "CREATE ACCOUNT";
 const String register = " Register";
 const String noAccount = "Don’t have an account?";
 const String or = "or";
@@ -25,3 +26,6 @@ const String startTime = "Start Time";
 const String endTime = "End Time";
 const String createTask = "create task";
 const String color = "Color";
+const String delete = "DELETE TASK";
+const String cancel = "CANCEL";
+const String complete = "TASK COMPLETED";

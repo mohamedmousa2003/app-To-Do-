@@ -4,13 +4,10 @@ import '../../core/app_colors.dart';
 
 class BuildTapContainer extends StatelessWidget {
   BuildTapContainer(
-      {super.key,
-      required this.title,
-      required this.image,
-      required this.onTap});
+      {super.key, required this.title, this.image, required this.onTap});
 
   final String title;
-  final String image;
+  final String? image;
   Function() onTap;
 
   @override
@@ -30,7 +27,7 @@ class BuildTapContainer extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              image,
+              image!,
               height: 35,
               width: 35,
               fit: BoxFit.cover,

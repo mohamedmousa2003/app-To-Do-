@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo/pages/home/add_task.dart';
 import 'package:todo/pages/home/home_view.dart';
+import 'package:todo/pages/login/login_view.dart';
 import 'package:todo/pages/onboarding/onboarding_view.dart';
 import 'package:todo/pages/register/register_view.dart';
 import 'package:todo/pages/splash_Screen/splash_screen.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         HomeView.routeName: (context) => HomeView(),
         RegisterView.routeName: (context) => RegisterView(),
         AddTask.routeName: (context) => AddTask(),
+        LoginView.routeName: (context) => LoginView()
       },
     );
   }

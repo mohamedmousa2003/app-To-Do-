@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../const/string_const.dart';
 import '../../core/app_colors.dart';
 import '../widget/build_tap_container.dart';
+import '../widget/custom_button.dart';
 import '../widget/custom_text_field.dart';
 
 class RegisterView extends StatelessWidget {
@@ -98,22 +99,9 @@ class RegisterView extends StatelessWidget {
                 keyboardType: TextInputType.text,
               ),
               const SizedBox(height: 30),
-              InkWell(
+              CustomButton(
+                title: register,
                 onTap: () {},
-                child: Container(
-                  width: double.infinity,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: iconColorBlue,
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  child: Center(
-                    child: Text(
-                      register,
-                      style: theme.textTheme.titleSmall,
-                    ),
-                  ),
-                ),
               ),
               const SizedBox(height: 30),
               Row(
