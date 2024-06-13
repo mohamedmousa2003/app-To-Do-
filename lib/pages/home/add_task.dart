@@ -24,7 +24,6 @@ class _AddTaskState extends State<AddTask> {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -181,7 +180,7 @@ class _AddTaskState extends State<AddTask> {
                                     showCalender();
                                   },
                                   child: const Icon(
-                                    Icons.calendar_month,
+                                    Icons.timer,
                                     color: whiteColor,
                                   ))
                             ],
@@ -203,11 +202,11 @@ class _AddTaskState extends State<AddTask> {
             Row(
               children: [
                 buildColor(redColor, 1),
-                const SizedBox(width: 15),
+                15.width,
                 buildColor(iconColorBlue, 2),
-                const SizedBox(width: 15),
+                15.width,
                 buildColor(yellowColor, 3),
-                const SizedBox(width: 15),
+                15.width,
                 buildColor(greenColor, 4),
               ],
             ),
@@ -237,18 +236,23 @@ class _AddTaskState extends State<AddTask> {
   }
 
   buildColor(Color colors, int index) {
-    return Stack(
-      children: [
-        CircleAvatar(
-          radius: 18,
-          backgroundColor: colors,
-        ),
-        const Align(
-          alignment: Alignment.center,
-          child: Icon(Icons.check, color: whiteColor),
-        ),
-        Container(),
-      ],
+    return InkWell(
+      onTap: () {
+        isSelect = index;
+        setState(() {});
+      },
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          CircleAvatar(
+            radius: 18,
+            backgroundColor: colors,
+          ),
+          isSelect == index
+              ? const Icon(Icons.check, color: whiteColor)
+              : Container(),
+        ],
+      ),
     );
   }
 
