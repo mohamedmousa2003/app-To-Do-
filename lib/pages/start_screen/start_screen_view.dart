@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo/core/app_colors.dart';
+import 'package:todo/core/custom_extension.dart';
 import 'package:todo/pages/login/login_view.dart';
 import 'package:todo/pages/register/register_view.dart';
 
@@ -74,9 +75,7 @@ class StartScreenView extends StatelessWidget {
                   ),
                 ),
                 */
-                SizedBox(
-                  height: 28,
-                ),
+                28.height,
                 CustomButton(
                   title: createAccount.toUpperCase(),
                   onTap: () {
