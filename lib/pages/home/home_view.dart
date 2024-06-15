@@ -97,10 +97,10 @@ class _HomeViewState extends State<HomeView> {
         isScrollControlled: true,
         context: context,
         builder: (context) => Padding(
-              padding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).viewInsets.bottom),
-              child: AddTask(),
-            ));
+          padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom),
+          child: AddTask(),
+        ));
   }
 }
 
