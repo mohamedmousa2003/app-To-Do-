@@ -1,4 +1,4 @@
-import 'dart:ui';
+
 
 class TaskModel {
   String? id;
@@ -6,9 +6,10 @@ class TaskModel {
   String? title;
   String? description;
   bool? isDone;
+  DateTime? date;
   String startTime;
   String endTime;
-  Color? color;
+  int? color;
 
   TaskModel({
     this.id = "",
@@ -16,6 +17,7 @@ class TaskModel {
     required this.description,
     this.isDone = false,
     required this.color,
+    this.date,
     required this.startTime,
     required this.endTime,
   });
@@ -28,6 +30,7 @@ class TaskModel {
       'description': description,
       'isDone': isDone,
       'color': color,
+      'date': date?.millisecondsSinceEpoch,
       'startTime': startTime,
       'endTime': endTime,
     };
@@ -37,12 +40,13 @@ class TaskModel {
 
   TaskModel.fromJson(Map<String, dynamic> data)
       : this(
-          id: data['id'],
+    id: data['id'],
           title: data['title'],
           description: data['description'],
           isDone: data['isDone'],
           color: data['color'],
           startTime: data['startTime'],
+          date: DateTime.fromMillisecondsSinceEpoch(data['date']),
           endTime: data['endTime'],
         );
 }

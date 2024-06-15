@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:todo/models/task_model.dart';
 
 class FirebaseManager {
@@ -19,5 +20,16 @@ class FirebaseManager {
     task.id = docRef.id; // document id
     return await docRef.set(
         task); // take object of task model and take the task and put it in firebase
+  }
+
+  static void deleteTask(String id) {
+    getTasksCollection().doc(id).delete();
+  }
+
+  static Stream<QuerySnapshot<TaskModel>> getTask(DateTime dateTime) {
+    return getTasksCollection()
+        .where("date",
+            isEqualTo: DateUtils.dateOnly(dateTime).millisecondsSinceEpoch)
+        .snapshots();
   }
 }

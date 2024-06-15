@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:todo/const/string_const.dart';
@@ -7,18 +8,13 @@ import 'package:todo/core/custom_extension.dart';
 import '../../core/app_colors.dart';
 import '../../firebase/firebase_manager.dart';
 import '../../models/task_model.dart';
-import '../widget/custom_button.dart';
 import '../widget/custom_text_field.dart';
-
 class AddTask extends StatefulWidget {
   static String routeName = "add";
-
   const AddTask({super.key});
-
   @override
   State<AddTask> createState() => _AddTaskState();
 }
-
 class _AddTaskState extends State<AddTask> {
   var titleController = TextEditingController();
   var formKey = GlobalKey<FormState>();
@@ -28,8 +24,6 @@ class _AddTaskState extends State<AddTask> {
   String endDateFormat = DateFormat('hh:mm a')
       .format(DateTime.now().add(const Duration(minutes: 60)));
   int isSelect = 0;
-  Color? colorSelect;
-
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
@@ -44,8 +38,9 @@ class _AddTaskState extends State<AddTask> {
       body: Form(
         key: formKey,
         child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
+            padding: const EdgeInsets.all(15),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -99,7 +94,7 @@ class _AddTaskState extends State<AddTask> {
                   decoration: BoxDecoration(
                     color: grayColorD,
                     borderRadius: BorderRadius.circular(4),
-                    border: Border.all(color: whiteColor, width: 1),
+                    border: Border.all(color: whiteColor, width: 1.w),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -143,7 +138,7 @@ class _AddTaskState extends State<AddTask> {
                               padding: const EdgeInsets.all(8.0),
                               child: Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     startDateFormat,
@@ -182,7 +177,7 @@ class _AddTaskState extends State<AddTask> {
                               padding: const EdgeInsets.all(8.0),
                               child: Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     endDateFormat,
@@ -222,10 +217,7 @@ class _AddTaskState extends State<AddTask> {
                           child: ListView.builder(
                         itemCount: 4,
                         scrollDirection: Axis.horizontal,
-                        itemBuilder: (
-                          context,
-                          index,
-                        ) {
+                        itemBuilder: (context, index) {
                           Color getColor(index) {
                             switch (index) {
                               case 0:
@@ -238,26 +230,20 @@ class _AddTaskState extends State<AddTask> {
                                 return greenColor;
                             }
                           }
-
                           return Padding(
                             padding: const EdgeInsets.only(right: 10.0),
-                            child: StreamBuilder<Object>(
-                                stream: null,
-                                builder: (context, snapshot) {
-                                  return InkWell(
-                                    onTap: () {
-                                      isSelect = index;
-                                      setState(() {});
-                                    },
-                                    child: CircleAvatar(
-                                      backgroundColor: getColor(index),
-                                      child: isSelect == index
-                                          ? const Icon(Icons.check,
-                                              color: whiteColor)
-                                          : null,
-                                    ),
-                                  );
-                                }),
+                            child: InkWell(
+                              onTap: () {
+                                isSelect = index;
+                                setState(() {});
+                              },
+                              child: CircleAvatar(
+                                backgroundColor: getColor(index),
+                                child: isSelect == index
+                                    ? const Icon(Icons.check, color: whiteColor)
+                                    : null,
+                              ),
+                            ),
                           );
                         },
                       )),
@@ -265,37 +251,48 @@ class _AddTaskState extends State<AddTask> {
                   ),
                 ),
                 92.height,
-                CustomButton(
-                  title: createTask.toUpperCase(),
-                  onTap: () async {
-                    if (formKey.currentState?.validate() == true) {
-                      setState(() {});
-                      TaskModel task = TaskModel(
-                        title: titleController.text,
-                        startTime: startDateFormat,
-                        endTime: endDateFormat,
-                        description: noteController.text,
-                        color: colorSelect,
-                      );
-                      await FirebaseManager.addTask(task).timeout(
-                        const Duration(milliseconds: 500),
-                        onTimeout: () {
-                          Fluttertoast.showToast(
-                            msg: "The task was added successfully",
-                            toastLength: Toast.LENGTH_SHORT,
-                            gravity: ToastGravity.CENTER,
-                            timeInSecForIosWeb: 5,
-                            backgroundColor: whiteColor,
-                            textColor: blackColor,
-                            fontSize: 20,
-                          );
-                          Navigator.pop(context);
-                          // used alert or aad package toast
-                        },
-                      );
-                    }
-                  },
-                ),
+                SizedBox(
+                  width: double.infinity,
+                  height: 50,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: iconColorBlue,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4),
+                        )),
+                    onPressed: () async {
+                      if (formKey.currentState?.validate() == true) {
+                        setState(() {});
+                        TaskModel task = TaskModel(
+                          title: titleController.text,
+                          startTime: startDateFormat,
+                          endTime: endDateFormat,
+                          date: DateUtils.dateOnly(dataTime),
+                          description: noteController.text,
+                          color: null,
+                        );
+                        await FirebaseManager.addTask(task).timeout(
+                          const Duration(milliseconds: 500),
+                          onTimeout: () {
+                            Fluttertoast.showToast(
+                              msg: "The task was added successfully",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.CENTER,
+                              timeInSecForIosWeb: 5,
+                              backgroundColor: whiteColor,
+                              textColor: blackColor,
+                              fontSize: 20,
+                            );
+                            Navigator.pop(context);
+                            // used alert or aad package toast
+                          },
+                        );
+                      }
+                    },
+                    child: Text(createTask.toUpperCase(),
+                        style: theme.textTheme.titleSmall),
+                  ),
+                )
               ],
             ),
           ),
