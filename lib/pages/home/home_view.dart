@@ -19,6 +19,7 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   DateTime dataTime = DateTime.now();
+
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
@@ -56,7 +57,7 @@ class _HomeViewState extends State<HomeView> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, AddTask.routeName);
+          _builderSowTak();
         },
         child: Icon(
           Icons.add,
@@ -90,6 +91,17 @@ class _HomeViewState extends State<HomeView> {
       ],
     );
   }
+
+  _builderSowTak() {
+    return showModalBottomSheet(
+        isScrollControlled: true,
+        context: context,
+        builder: (context) => Padding(
+              padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).viewInsets.bottom),
+              child: AddTask(),
+            ));
+  }
 }
 
 class TaskComplete extends StatelessWidget {
@@ -113,7 +125,7 @@ class TaskComplete extends StatelessWidget {
               width: double.infinity,
               child: Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 8, vertical: 30),
+                const EdgeInsets.symmetric(horizontal: 8, vertical: 30),
                 child: Column(
                   children: [
                     CustomButton(
