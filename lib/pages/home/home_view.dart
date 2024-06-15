@@ -4,9 +4,11 @@ import 'package:intl/intl.dart';
 import 'package:todo/core/app_colors.dart';
 import 'package:todo/core/custom_extension.dart';
 import 'package:todo/pages/home/add_task.dart';
+import 'package:todo/pages/home/task_complete.dart';
 
 import '../../const/string_const.dart';
-import '../widget/custom_button.dart';
+import '../../firebase/firebase_manager.dart';
+import '../../models/task_model.dart';
 
 class HomeView extends StatefulWidget {
   static String routeName = 'home';
@@ -50,9 +52,49 @@ class _HomeViewState extends State<HomeView> {
           }),
           20.height,
           // no task
-          //noTaskWidget(theme),
-          TaskComplete(theme: theme),
-          TaskComplete(theme: theme),
+
+          // task compelet
+          StreamBuilder(
+            stream: FirebaseManager.getTask(dataTime),
+            builder: (context, snapshot) {
+              // if the data It's still coming
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: CircularProgressIndicator(
+                    color: iconColorBlue,
+                  ),
+                );
+              }
+              if (snapshot.hasError) {
+                return const Center(
+                  child: Text(
+                    "error",
+                    style: TextStyle(
+                      color: redColor,
+                      fontSize: 30,
+                    ),
+                  ),
+                );
+              }
+              List<TaskModel> tasks = snapshot.data?.docs
+                      .map(
+                        (e) => e.data(),
+                      )
+                      .toList() ??
+                  [];
+
+              return tasks.isEmpty
+                  ? noTaskWidget(theme)
+                  : Expanded(
+                      child: ListView.builder(
+                        itemBuilder: (context, index) {
+                          return TaskComplete(task: tasks[index]);
+                        },
+                        itemCount: tasks.length,
+                      ),
+                    );
+            },
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -96,124 +138,6 @@ class _HomeViewState extends State<HomeView> {
     return showModalBottomSheet(
         isScrollControlled: true,
         context: context,
-        builder: (context) => Padding(
-              padding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).viewInsets.bottom),
-              child: AddTask(),
-            ));
-  }
-}
-
-class TaskComplete extends StatelessWidget {
-  const TaskComplete({
-    super.key,
-    required this.theme,
-  });
-
-  final ThemeData theme;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        showModalBottomSheet(
-          backgroundColor: showBottomColor,
-          context: context,
-          builder: (context) {
-            return SizedBox(
-              height: 240,
-              width: double.infinity,
-              child: Padding(
-                padding:
-                const EdgeInsets.symmetric(horizontal: 8, vertical: 30),
-                child: Column(
-                  children: [
-                    CustomButton(
-                      title: complete,
-                      onTap: () {},
-                    ),
-                    15.height,
-                    CustomButton(
-                      title: delete,
-                      onTap: () {},
-                      colorElevatedButton: redColor,
-                    ),
-                    15.height,
-                    CustomButton(
-                      title: cancel,
-                      onTap: () {},
-                    ),
-                  ],
-                ),
-              ),
-            );
-          },
-        );
-      },
-      child: Container(
-        padding: const EdgeInsets.all(10),
-        margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 20),
-        height: 128,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: yellowColor,
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Task 1",
-                  style: theme.textTheme.titleMedium
-                      ?.copyWith(fontSize: 24, color: whiteColor),
-                ),
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.timer,
-                      color: whiteColor,
-                    ),
-                    8.width,
-                    Text(
-                      "09:33 PM - 09:48 PM",
-                      style: theme.textTheme.titleSmall,
-                    ),
-                  ],
-                ),
-                Text(
-                  "Learn SQLITE ",
-                  style: theme.textTheme.titleMedium
-                      ?.copyWith(color: whiteColor, fontSize: 24),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                const VerticalDivider(
-                  width: 2,
-                  thickness: 3,
-                  color: whiteColor,
-                  indent: 10,
-                  endIndent: 10,
-                ),
-                9.width,
-                RotatedBox(
-                  quarterTurns: 3,
-                  child: Text(
-                    " TODO",
-                    style: theme.textTheme.titleMedium
-                        ?.copyWith(color: whiteColor),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
+        builder: (context) => const AddTask());
   }
 }

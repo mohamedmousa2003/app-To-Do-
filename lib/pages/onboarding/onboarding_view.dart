@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:todo/core/app_colors.dart';
+import 'package:todo/pages/home/home_view.dart';
 import 'package:todo/pages/onboarding/Onboarding_items.dart';
-
-import '../start_screen/start_screen_view.dart';
 
 class OnboardingView extends StatefulWidget {
   OnboardingView({super.key});
@@ -145,7 +144,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (_) => StartScreenView()));
+                                        builder: (_) => HomeView()));
                               },
                               child: Text(
                                 "Get Started",

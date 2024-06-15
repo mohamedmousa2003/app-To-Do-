@@ -10,7 +10,6 @@ class CustomButton extends StatelessWidget {
       this.colorElevatedButton = iconColorBlue});
 
   Function() onTap;
-
   final String title;
 
   Color? colorElevatedButton;
@@ -36,7 +35,7 @@ class CustomButton extends StatelessWidget {
           ),
            */
             ),
-        onPressed: onTap,
+        onPressed: onTap(),
         child: Text(title, style: theme.textTheme.titleSmall),
       ),
     );
